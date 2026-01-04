@@ -1,69 +1,221 @@
-@import "tailwindcss";
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* Primary: Sage Green - Elegant, calm, professional */
+    --primary: 158 35% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 158 40% 55%;
+    --primary-deep: 158 40% 35%;
+
+    /* Secondary: Soft Teal */
+    --secondary: 174 45% 92%;
+    --secondary-foreground: 174 50% 25%;
+
+    /* Accent: Coral Peach - Warm, inviting */
+    --accent: 15 75% 65%;
+    --accent-foreground: 15 80% 20%;
+    --accent-soft: 15 60% 95%;
+
+    /* Background: Warm off-white */
+    --background: 40 30% 98%;
+    --foreground: 220 25% 15%;
+
+    /* Card: Clean white with subtle warmth */
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+
+    /* Muted: Soft gray with sage undertone */
+    --muted: 150 10% 95%;
+    --muted-foreground: 220 15% 50%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 15%;
+
+    /* Border: Subtle sage-tinted gray */
+    --border: 150 15% 88%;
+    --input: 150 15% 88%;
+    --ring: 158 35% 45%;
+
+    /* States */
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 60% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 95% 60%;
+    --warning-foreground: 38 95% 15%;
+
+    /* Radius */
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(158 35% 45%), hsl(174 40% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(15 75% 65%), hsl(25 80% 70%));
+    --gradient-bg: linear-gradient(145deg, hsl(40 30% 98%), hsl(174 25% 96%));
+    --gradient-glass: linear-gradient(135deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.7));
+    --gradient-subtle: linear-gradient(180deg, hsl(174 30% 97%), hsl(40 30% 98%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px hsla(220, 25%, 15%, 0.04);
+    --shadow-md: 0 4px 12px hsla(220, 25%, 15%, 0.08);
+    --shadow-lg: 0 10px 40px hsla(220, 25%, 15%, 0.12);
+    --shadow-glow: 0 8px 32px hsla(158, 35%, 45%, 0.2);
+    --shadow-input-focus: 0 0 0 3px hsla(158, 35%, 45%, 0.15);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease-out;
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    --primary: 158 40% 55%;
+    --primary-foreground: 0 0% 10%;
+    --primary-glow: 158 45% 65%;
+    --primary-deep: 158 35% 40%;
+
+    --secondary: 174 30% 15%;
+    --secondary-foreground: 174 40% 85%;
+
+    --accent: 15 70% 60%;
+    --accent-foreground: 15 70% 95%;
+    --accent-soft: 15 40% 20%;
+
+    --background: 220 20% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 15% 60%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 158 40% 55%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 55% 50%;
+    --success-foreground: 0 0% 10%;
+    --warning: 38 90% 55%;
+    --warning-foreground: 38 90% 10%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(158 40% 55%), hsl(174 35% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(15 70% 60%), hsl(25 75% 55%));
+    --gradient-bg: linear-gradient(145deg, hsl(220 20% 8%), hsl(220 18% 10%));
+    --gradient-glass: linear-gradient(135deg, hsla(220, 18%, 15%, 0.9), hsla(220, 18%, 15%, 0.7));
+    --gradient-subtle: linear-gradient(180deg, hsl(220 18% 10%), hsl(220 20% 8%));
+
+    --shadow-sm: 0 1px 2px hsla(0, 0%, 0%, 0.2);
+    --shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.3);
+    --shadow-lg: 0 10px 40px hsla(0, 0%, 0%, 0.4);
+    --shadow-glow: 0 8px 32px hsla(158, 40%, 55%, 0.25);
+    --shadow-input-focus: 0 0 0 3px hsla(158, 40%, 55%, 0.2);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+@layer components {
+  /* Glass morphism effect */
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: var(--gradient-glass);
+    border: 1px solid hsla(0, 0%, 100%, 0.2);
+  }
+
+  /* Subtle pattern background */
+  .pattern-dots {
+    background-image: radial-gradient(hsla(158, 35%, 45%, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  /* Pulse glow animation */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsla(158, 35%, 45%, 0.2);
+    }
+    to {
+      box-shadow: 0 0 30px hsla(158, 35%, 45%, 0.35);
+    }
+  }
+
+  /* Gradient text */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Focus ring utility */
+  .focus-ring {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-glow-primary {
+    box-shadow: var(--shadow-glow);
   }
 }
