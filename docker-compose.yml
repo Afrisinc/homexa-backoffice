@@ -1,0 +1,13 @@
+services:
+  web:
+    image: ghcr.io/${GHCR_OWNER}/homexa-backoffice:latest
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - VITE_SERVER_URL=${VITE_SERVER_URL}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
