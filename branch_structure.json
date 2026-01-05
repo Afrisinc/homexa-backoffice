@@ -1,0 +1,27 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "docker",
+    "fix-product-seller",
+    "fix-user",
+    "ft-auth",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "docker": "main",
+    "fix-product-seller": "main",
+    "fix-user": "main",
+    "ft-auth": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "docker",
+    "fix-product-seller",
+    "fix-user",
+    "ft-auth",
+    "origin"
+  ]
+}
