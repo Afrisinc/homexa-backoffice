@@ -43,11 +43,11 @@ export const Table = ({
   };
 
   const handleSelectRow = (id: string, checked: boolean) => {
-    setSelectedRows((prev: string[]) => {
-      const newSelected = checked ? [...prev, id] : prev.filter((rowId) => rowId !== id);
-      onSelectionChange?.(newSelected);
-      return newSelected;
-    });
+    const newSelected = checked
+      ? [...selectedRows, id]
+      : selectedRows.filter((rowId) => rowId !== id);
+    setSelectedRows(newSelected);
+    onSelectionChange?.(newSelected);
   };
 
   if (loading) {
@@ -73,7 +73,7 @@ export const Table = ({
           <tr>
             {onSelectionChange && (
               <th className="w-12 px-4 py-3 text-left">
-                <Checkbox onChange={(e) => handleSelectAll(e.target.checked)} />
+                <Checkbox onChange={(e) => handleSelectAll((e.target as HTMLInputElement).checked)} />
               </th>
             )}
             {columns.map((column) => (
@@ -101,7 +101,7 @@ export const Table = ({
             >
               {onSelectionChange && (
                 <td className="px-4 py-3">
-                  <Checkbox onChange={(e) => handleSelectRow(row.id, e.target.checked)} />
+                  <Checkbox onChange={(e) => handleSelectRow(row.id, (e.target as HTMLInputElement).checked)} />
                 </td>
               )}
               {columns.map((column) => (

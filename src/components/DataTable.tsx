@@ -34,7 +34,6 @@ export const DataTable = ({
   hover = true,
 }: DataTableProps) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
 
   const searchableColumns = useMemo(() => columns.filter((col) => col.searchable), [columns]);
 

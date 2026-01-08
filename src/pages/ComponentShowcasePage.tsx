@@ -68,7 +68,7 @@ const mockOrders = [
 ];
 
 export const ComponentShowcasePage = () => {
-  const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  const [, setSelectedUsers] = useState<string[]>([]);
 
   const userColumns = [
     {

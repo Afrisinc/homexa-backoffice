@@ -50,7 +50,7 @@ const mockProducts = [
 
 export const ProductListPage = () => {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
-  const [activeTab, setActiveTab] = useState('all');
+  const [, setActiveTab] = useState('all');
 
   const columns = [
     {
@@ -98,7 +98,7 @@ export const ProductListPage = () => {
     {
       id: 'actions',
       header: 'Actions',
-      render: (row: any) => (
+      render: () => (
         <div className="flex gap-2">
           <button className="p-2 hover:bg-muted rounded-md transition-colors">
             <Edit className="h-4 w-4 text-muted-foreground hover:text-foreground" />

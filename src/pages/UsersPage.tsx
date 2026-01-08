@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Plus, Eye, Edit, Trash2, Shield } from 'lucide-react';
+import { Plus, Eye, Edit, Trash2 } from 'lucide-react';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import { DataTable } from '@/components/DataTable';
 import { Tabs } from '@/components/Tabs';
@@ -123,7 +123,7 @@ export const UsersPage: React.FC = () => {
     {
       id: 'actions',
       header: 'Actions',
-      render: (row: any) => (
+      render: () => (
         <div className="flex gap-2">
           <button className="p-2 hover:bg-muted rounded-md transition-colors" title="View">
             <Eye className="h-4 w-4 text-muted-foreground hover:text-foreground" />

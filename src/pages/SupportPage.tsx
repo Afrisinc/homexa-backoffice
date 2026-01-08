@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Send, Phone, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Phone, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import { DataTable } from '@/components/DataTable';
 import { Tabs } from '@/components/Tabs';
-import { Button } from '@/components/Button';
-import { Input } from '@/components/Input';
 
 // Mock data
 const mockChats = [
@@ -97,8 +95,6 @@ const getStatusIcon = (status: string) => {
 
 export const SupportPage: React.FC = () => {
   const [selectedChats, setSelectedChats] = React.useState<string[]>([]);
-  const [activeChat, setActiveChat] = React.useState<string | null>('chat_001');
-  const [messageText, setMessageText] = React.useState('');
 
   const columns = [
     {
