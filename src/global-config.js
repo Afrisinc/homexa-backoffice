@@ -7,7 +7,7 @@ import packageJson from '../package.json';
 export const CONFIG = {
   appName: 'HOMEXA Backoffice',
   appVersion: packageJson.version,
-  serverUrl: import.meta.env.VITE_SERVER_URL ?? '',
+  serverUrl: import.meta.env.VITE_SERVER_URL ?? 'https://api.homexa.rw',
   assetsDir: import.meta.env.VITE_ASSETS_DIR ?? '',
 
   auth: {
