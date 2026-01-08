@@ -1,5 +1,4 @@
-import { useSetState } from 'minimal-shared/hooks';
-import { useMemo, useEffect, useCallback } from 'react';
+import { useMemo, useEffect, useCallback, useState } from 'react';
 
 import axios, { endpoints } from '@/lib/axios';
 
@@ -10,7 +9,7 @@ import { setSession, isValidToken } from './utils';
 // ----------------------------------------------------------------------
 
 export function AuthProvider({ children }) {
-  const { state, setState } = useSetState({ user: null, loading: true });
+  const [state, setState] = useState({ user: null, loading: true });
 
   const checkUserSession = useCallback(async () => {
     try {
@@ -23,15 +22,15 @@ export function AuthProvider({ children }) {
 
         const { user } = res.data;
 
-        setState({ user: { ...user, accessToken }, loading: false });
+        setState((prev) => ({ ...prev, user: { ...user, accessToken }, loading: false }));
       } else {
-        setState({ user: null, loading: false });
+        setState((prev) => ({ ...prev, user: null, loading: false }));
       }
     } catch (error) {
       console.error(error);
-      setState({ user: null, loading: false });
+      setState((prev) => ({ ...prev, user: null, loading: false }));
     }
-  }, [setState]);
+  }, []);
 
   useEffect(() => {
     checkUserSession();
