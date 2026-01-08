@@ -59,9 +59,7 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ children, className }) =
         </header>
 
         {/* Page content */}
-        <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
-          {children}
-        </main>
+        <main className="flex flex-1 items-center justify-center px-4 py-8 sm:px-6 lg:px-8">{children}</main>
 
         {/* Footer */}
         {/* Footer */}
