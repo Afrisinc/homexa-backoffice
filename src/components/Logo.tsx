@@ -26,9 +26,7 @@ const Logo = React.forwardRef<HTMLDivElement, LogoProps>(
           </div>
         </div>
         {showText && (
-          <span
-            className={cn('font-serif font-semibold tracking-tight text-foreground', config.text)}
-          >
+          <span className={cn('font-serif font-semibold tracking-tight text-foreground', config.text)}>
             Afrisinc
           </span>
         )}
