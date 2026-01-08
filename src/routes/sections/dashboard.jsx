@@ -40,12 +40,8 @@ const UserEditPage = lazy(() => import('src/pages/dashboard/user/edit'));
 const AccountGeneralPage = lazy(() => import('src/pages/dashboard/user/account/general'));
 const AccountBillingPage = lazy(() => import('src/pages/dashboard/user/account/billing'));
 const AccountSocialsPage = lazy(() => import('src/pages/dashboard/user/account/socials'));
-const AccountNotificationsPage = lazy(
-  () => import('src/pages/dashboard/user/account/notifications')
-);
-const AccountChangePasswordPage = lazy(
-  () => import('src/pages/dashboard/user/account/change-password')
-);
+const AccountNotificationsPage = lazy(() => import('src/pages/dashboard/user/account/notifications'));
+const AccountChangePasswordPage = lazy(() => import('src/pages/dashboard/user/account/change-password'));
 // Blog
 const BlogPostsPage = lazy(() => import('src/pages/dashboard/post/list'));
 const BlogPostPage = lazy(() => import('src/pages/dashboard/post/details'));

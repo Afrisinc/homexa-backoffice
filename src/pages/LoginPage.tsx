@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
@@ -13,8 +14,7 @@ import { getErrorMessage } from '@/auth/utils';
 import { useAuthContext } from '@/auth/hooks';
 
 export const LoginPage: React.FC = () => {
-
-
+  const navigate = useNavigate();
   const { checkUserSession } = useAuthContext();
 
   const [email, setEmail] = React.useState('');
@@ -49,14 +49,15 @@ export const LoginPage: React.FC = () => {
 
     try {
       setIsLoading(true);
-      // Mock successful login
-      // toast.success('Welcome back!', {
-      //   description: 'You have successfully signed in.',
-      // });
       await signInWithPassword({ email, password });
       await checkUserSession?.();
 
-      // router.refresh();
+      toast.success('Welcome back!', {
+        description: 'You have successfully signed in.',
+      });
+
+      // Navigate to dashboard after successful login
+      navigate('/dashboard', { replace: true });
     } catch (error) {
       console.error(error);
       const feedbackMessage = getErrorMessage(error);
