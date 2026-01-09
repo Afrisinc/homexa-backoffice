@@ -6,6 +6,7 @@ import { PublicRoute } from '@/routes/PublicRoute';
 import LoginPage from '@/pages/LoginPage';
 import DashboardPage from '@/pages/DashboardPage';
 import UsersPage from '@/pages/UsersPage';
+import CreateUserPage from '@/pages/CreateUserPage';
 import ProductsPage from '@/pages/ProductsPage';
 import CreateProductPage from '@/pages/CreateProductPage';
 import CategoriesPage from '@/pages/CategoriesPage';
@@ -45,6 +46,30 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <UsersPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/users/create"
+        element={
+          <ProtectedRoute>
+            <CreateUserPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/users/:id/edit"
+        element={
+          <ProtectedRoute>
+            <CreateUserPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/dashboard/users/:id/view"
+        element={
+          <ProtectedRoute>
+            <CreateUserPage />
           </ProtectedRoute>
         }
       />
