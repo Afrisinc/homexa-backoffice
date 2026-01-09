@@ -15,7 +15,7 @@ export const endpoints = {
     delete: '/api/categories/:id',
   },
   users: {
-    list: '/api/users',
+    list: '/users',
     details: '/api/users/:id',
     create: '/api/users',
     update: '/api/users/:id',
@@ -116,13 +116,18 @@ export const categoriesAPI = {
 // Users API
 export const usersAPI = {
   /**
-   * Fetch all users
+   * Fetch all users with pagination and search
    */
-  getAll: async () => {
+  getAll: async (page = 1, limit = 10, search = '') => {
     try {
-      const response = await axiosInstance.get(endpoints.users.list);
-      console.log('Fetched users data:', response.data);
-      return response.data;
+      const params = new URLSearchParams();
+      params.append('page', page.toString());
+      params.append('limit', limit.toString());
+      if (search) {
+        params.append('search', search);
+      }
+      const response = await axiosInstance.get(`${endpoints.users.list}?${params}`);
+      return response.data?.data;
     } catch (error) {
       console.error('Error fetching users:', error);
       throw error;
@@ -136,7 +141,7 @@ export const usersAPI = {
     try {
       const url = replaceId(endpoints.users.details, id);
       const response = await axiosInstance.get(url);
-      return response.data;
+      return response.data?.data;
     } catch (error) {
       console.error('Error fetching user:', error);
       throw error;
@@ -146,9 +151,18 @@ export const usersAPI = {
   /**
    * Create a new user
    */
-  create: async (data: any) => {
+  create: async (data: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    tin: string;
+    companyName: string;
+    role: string;
+  }) => {
     try {
-      const response = await axiosInstance.post(endpoints.users.create, data);
+      const response = await axiosInstance.post('/users/create', data);
       return response.data;
     } catch (error) {
       console.error('Error creating user:', error);
@@ -161,8 +175,7 @@ export const usersAPI = {
    */
   update: async (id: string, data: any) => {
     try {
-      const url = replaceId(endpoints.users.update, id);
-      const response = await axiosInstance.put(url, data);
+      const response = await axiosInstance.put(`/api/users/${id}`, data);
       return response.data;
     } catch (error) {
       console.error('Error updating user:', error);
