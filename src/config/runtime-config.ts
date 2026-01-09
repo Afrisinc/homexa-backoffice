@@ -33,7 +33,7 @@ export async function loadRuntimeConfig(): Promise<RuntimeConfig> {
     }
 
     configLoaded = true;
-    console.log('[Config] Runtime configuration loaded', config);
+    // console.log('[Config] Runtime configuration loaded', config);
     return config;
   } catch (error) {
     console.warn('[Config] Could not load config.json, falling back to build-time variables', error);
