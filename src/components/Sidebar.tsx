@@ -8,7 +8,9 @@ import {
   Tags,
   MessageSquare,
   BarChart3,
+  LogOut,
 } from 'lucide-react';
+import { useAuthContext } from '@/auth/hooks/use-auth-context';
 
 interface NavItem {
   id: string;
@@ -67,6 +69,7 @@ interface SidebarProps {
 export const Sidebar = ({ isOpen = true, onClose }: SidebarProps) => {
   const [expandedItems, setExpandedItems] = useState<string[]>(['management']);
   const location = useLocation();
+  const { logout } = useAuthContext();
 
   const toggleExpanded = (id: string) => {
     setExpandedItems((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
@@ -160,7 +163,14 @@ export const Sidebar = ({ isOpen = true, onClose }: SidebarProps) => {
             <button className="w-full px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors text-left">
               Settings
             </button>
-            <button className="w-full px-4 py-2 text-sm text-destructive hover:bg-destructive/10 rounded-lg transition-colors text-left">
+            <button
+              onClick={() => {
+                onClose?.();
+                logout();
+              }}
+              className="w-full flex items-center gap-3 px-4 py-2 text-sm text-destructive hover:bg-destructive/10 rounded-lg transition-colors text-left"
+            >
+              <LogOut className="h-4 w-4" />
               Logout
             </button>
           </div>
