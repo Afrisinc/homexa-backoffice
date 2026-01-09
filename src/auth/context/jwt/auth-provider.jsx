@@ -43,15 +43,22 @@ export function AuthProvider({ children }) {
 
   const status = state.loading ? 'loading' : checkAuthenticated;
 
+  const logout = useCallback(() => {
+    sessionStorage.removeItem(JWT_STORAGE_KEY);
+    setState({ user: null, loading: false });
+    window.location.href = '/login';
+  }, []);
+
   const memoizedValue = useMemo(
     () => ({
       user: state.user ? { ...state.user, role: state.user?.role ?? 'admin' } : null,
       checkUserSession,
+      logout,
       loading: status === 'loading',
       authenticated: status === 'authenticated',
       unauthenticated: status === 'unauthenticated',
     }),
-    [checkUserSession, state.user, status]
+    [checkUserSession, logout, state.user, status]
   );
 
   return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
