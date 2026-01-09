@@ -22,19 +22,21 @@ export async function loadRuntimeConfig(): Promise<RuntimeConfig> {
     }
 
     const runtimeConfig = await response.json();
+
+    // Use runtime config if available, fall back to build-time env vars
     config = {
-      serverUrl: runtimeConfig.serverUrl,
+      serverUrl: runtimeConfig.serverUrl || import.meta.env.VITE_SERVER_URL || '',
     };
 
     if (!config.serverUrl) {
-      throw new Error('serverUrl is required in config.json');
+      console.error('[Config] serverUrl is required but not found');
     }
 
     configLoaded = true;
     console.log('[Config] Runtime configuration loaded', config);
     return config;
   } catch (error) {
-    console.warn('[Config] Could not load config.json. For Docker: ensure VITE_SERVER_URL is set as environment variable. For development: set value in .env file.', error);
+    console.warn('[Config] Could not load config.json, falling back to build-time variables', error);
     config = {
       serverUrl: import.meta.env.VITE_SERVER_URL || '',
     };

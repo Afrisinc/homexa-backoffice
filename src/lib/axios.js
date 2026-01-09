@@ -4,19 +4,35 @@ import { CONFIG } from '@/global-config';
 
 // ----------------------------------------------------------------------
 
-// Always use the server URL from config
-const getBaseURL = () => CONFIG.serverUrl || '';
+// Create axios instance lazily to ensure CONFIG is loaded before accessing it
+let axiosInstance = null;
 
-const axiosInstance = axios.create({ baseURL: getBaseURL() });
+function getOrCreateAxiosInstance() {
+  if (!axiosInstance) {
+    const baseURL = CONFIG.serverUrl || '';
+    axiosInstance = axios.create({ baseURL });
+    axiosInstance.interceptors.response.use(
+      (response) => response,
+      (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong!')
+    );
+  }
+  return axiosInstance;
+}
 
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong!')
-);
+// Export a proxy that creates the instance on first method call
+const handler = {
+  get(target, prop, receiver) {
+    // Return the method bound to the actual axios instance
+    const instance = getOrCreateAxiosInstance();
+    const value = instance[prop];
+    if (typeof value === 'function') {
+      return value.bind(instance);
+    }
+    return value;
+  },
+};
 
-// ----------------------------------------------------------------------
-
-export default axiosInstance;
+export default new Proxy({}, handler);
 
 // ----------------------------------------------------------------------
 
