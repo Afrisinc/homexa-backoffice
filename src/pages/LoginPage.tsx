@@ -4,8 +4,6 @@ import { AuthLayout } from '@/layouts/AuthLayout';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Checkbox } from '@/components/Checkbox';
-import { Divider } from '@/components/Divider';
-import { SocialButton } from '@/components/SocialButton';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
@@ -68,11 +66,6 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
-    toast.info(`${provider} login`, {
-      description: `Redirecting to ${provider}...`,
-    });
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,16 +101,7 @@ export const LoginPage: React.FC = () => {
             <p className="text-muted-foreground">Sign in to continue to your account</p>
           </motion.div>
 
-          {/* Social login buttons */}
-          {/* <motion.div className="space-y-3 mb-6" variants={itemVariants}>
-            <SocialButton provider="google" onClick={() => handleSocialLogin('Google')} />
-            <SocialButton provider="apple" onClick={() => handleSocialLogin('Apple')} />
-          </motion.div> */}
-
-          {/* Divider */}
-          {/* <motion.div variants={itemVariants}>
-            <Divider label="or continue with email" className="my-6" />
-          </motion.div> */}
+  
 
           {/* Form */}
           <motion.form onSubmit={handleSubmit} className="space-y-5" variants={itemVariants}>
