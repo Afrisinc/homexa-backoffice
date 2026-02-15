@@ -109,15 +109,15 @@ export const LoginPage: React.FC = () => {
           </motion.div>
 
           {/* Social login buttons */}
-          <motion.div className="space-y-3 mb-6" variants={itemVariants}>
+          {/* <motion.div className="space-y-3 mb-6" variants={itemVariants}>
             <SocialButton provider="google" onClick={() => handleSocialLogin('Google')} />
             <SocialButton provider="apple" onClick={() => handleSocialLogin('Apple')} />
-          </motion.div>
+          </motion.div> */}
 
           {/* Divider */}
-          <motion.div variants={itemVariants}>
+          {/* <motion.div variants={itemVariants}>
             <Divider label="or continue with email" className="my-6" />
-          </motion.div>
+          </motion.div> */}
 
           {/* Form */}
           <motion.form onSubmit={handleSubmit} className="space-y-5" variants={itemVariants}>

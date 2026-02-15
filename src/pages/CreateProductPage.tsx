@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Save, X, Trash2, Play, Upload, ChevronDown } from 'lucide-react';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import { toast } from 'sonner';
-import { productsAPI, categoriesAPI, usersAPI } from '@/lib/api';
+import { productsAPI, categoriesAPI, sellersAPI } from '@/lib/api';
 
 interface ProductFormData {
   name: string;
@@ -93,9 +93,8 @@ export const CreateProductPage: React.FC = () => {
     const fetchSellers = async () => {
       setLoadingSellers(true);
       try {
-        const data = await usersAPI.getAll();
-        // Filter to only SELLER role users
-        const sellersList = data?.filter((user: Seller) => user.role === 'SELLER') || [];
+        const data = await sellersAPI.getAll(1, 10, '');
+        const sellersList = Array.isArray(data) ? data : data?.items || [];
         setSellers(sellersList);
       } catch (error) {
         console.error('Error fetching sellers:', error);
@@ -108,6 +107,26 @@ export const CreateProductPage: React.FC = () => {
     fetchCategories();
     fetchSellers();
   }, []);
+
+  // Search sellers as user types
+  React.useEffect(() => {
+    const searchTimeoutId = setTimeout(async () => {
+      if (showSellerDropdown && sellerSearch.length > 0) {
+        setLoadingSellers(true);
+        try {
+          const data = await sellersAPI.getAll(1, 10, sellerSearch);
+          const sellersList = Array.isArray(data) ? data : data?.items || [];
+          setSellers(sellersList);
+        } catch (error) {
+          console.error('Error searching sellers:', error);
+        } finally {
+          setLoadingSellers(false);
+        }
+      }
+    }, 300);
+
+    return () => clearTimeout(searchTimeoutId);
+  }, [sellerSearch, showSellerDropdown]);
 
   // Load product data if editing or viewing
   React.useEffect(() => {
@@ -451,13 +470,7 @@ export const CreateProductPage: React.FC = () => {
                               No sellers found
                             </div>
                           ) : (
-                            sellers
-                              .filter((seller) =>
-                                `${seller.firstName} ${seller.lastName} ${seller.email}`
-                                  .toLowerCase()
-                                  .includes(sellerSearch.toLowerCase())
-                              )
-                              .map((seller) => (
+                            sellers.map((seller) => (
                                 <button
                                   key={seller.id}
                                   type="button"
