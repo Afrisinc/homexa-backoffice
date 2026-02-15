@@ -185,6 +185,28 @@ export const usersAPI = {
   },
 };
 
+// Sellers API
+export const sellersAPI = {
+  /**
+   * Fetch sellers with pagination and search
+   */
+  getAll: async (page = 1, limit = 10, search = '') => {
+    try {
+      const params = new URLSearchParams();
+      params.append('page', page.toString());
+      params.append('limit', limit.toString());
+      if (search) {
+        params.append('search', search);
+      }
+      const response = await axiosInstance.get(`/api/sellers?${params.toString()}`);
+      return response.data?.data?.data || [];
+    } catch (error) {
+      console.error('Error fetching sellers:', error);
+      throw error;
+    }
+  },
+};
+
 // Products API
 export const productsAPI = {
   /**
@@ -304,6 +326,7 @@ export default {
   endpoints,
   categoriesAPI,
   usersAPI,
+  sellersAPI,
   productsAPI,
   chatsAPI,
 };
