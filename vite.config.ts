@@ -41,10 +41,7 @@ function runtimeConfigPlugin(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [
-    react(),
-    runtimeConfigPlugin(),
-  ],
+  plugins: [react(), runtimeConfigPlugin()],
 
   resolve: {
     alias: {

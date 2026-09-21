@@ -66,7 +66,6 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -100,8 +99,6 @@ export const LoginPage: React.FC = () => {
             <h1 className="text-3xl font-serif font-semibold text-foreground mb-2">Welcome back</h1>
             <p className="text-muted-foreground">Sign in to continue to your account</p>
           </motion.div>
-
-  
 
           {/* Form */}
           <motion.form onSubmit={handleSubmit} className="space-y-5" variants={itemVariants}>

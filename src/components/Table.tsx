@@ -43,9 +43,7 @@ export const Table = ({
   };
 
   const handleSelectRow = (id: string, checked: boolean) => {
-    const newSelected = checked
-      ? [...selectedRows, id]
-      : selectedRows.filter((rowId) => rowId !== id);
+    const newSelected = checked ? [...selectedRows, id] : selectedRows.filter((rowId) => rowId !== id);
     setSelectedRows(newSelected);
     onSelectionChange?.(newSelected);
   };
@@ -101,7 +99,9 @@ export const Table = ({
             >
               {onSelectionChange && (
                 <td className="px-4 py-3">
-                  <Checkbox onChange={(e) => handleSelectRow(row.id, (e.target as HTMLInputElement).checked)} />
+                  <Checkbox
+                    onChange={(e) => handleSelectRow(row.id, (e.target as HTMLInputElement).checked)}
+                  />
                 </td>
               )}
               {columns.map((column) => (

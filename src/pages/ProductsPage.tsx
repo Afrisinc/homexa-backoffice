@@ -50,7 +50,7 @@ export const ProductsPage: React.FC = () => {
 
       toast.success('Product deleted successfully!');
       // Refresh products list
-      setProducts(products.filter(prod => prod.id !== productId));
+      setProducts(products.filter((prod) => prod.id !== productId));
     } catch (error) {
       console.error('Error deleting product:', error);
       toast.error('Failed to delete product');
@@ -79,9 +79,7 @@ export const ProductsPage: React.FC = () => {
       id: 'category',
       header: 'Category',
       searchable: true,
-      render: (row: any) => (
-        <span className="text-sm text-muted-foreground">{row.category}</span>
-      ),
+      render: (row: any) => <span className="text-sm text-muted-foreground">{row.category}</span>,
     },
     {
       id: 'price',
@@ -89,9 +87,7 @@ export const ProductsPage: React.FC = () => {
       render: (row: any) => (
         <div>
           <p className="font-semibold text-foreground">${row.price}</p>
-          {row.discountPercent > 0 && (
-            <p className="text-xs text-success">-{row.discountPercent}%</p>
-          )}
+          {row.discountPercent > 0 && <p className="text-xs text-success">-{row.discountPercent}%</p>}
         </div>
       ),
     },
@@ -110,9 +106,7 @@ export const ProductsPage: React.FC = () => {
       render: (row: any) => (
         <span
           className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-            row.status === 'active'
-              ? 'bg-success/20 text-success'
-              : 'bg-muted text-muted-foreground'
+            row.status === 'active' ? 'bg-success/20 text-success' : 'bg-muted text-muted-foreground'
           }`}
         >
           {row.status.charAt(0).toUpperCase() + row.status.slice(1)}
@@ -161,9 +155,9 @@ export const ProductsPage: React.FC = () => {
   ];
 
   const allProducts = products;
-  const activeProducts = products.filter(p => p.status === 'active');
-  const lowStockProducts = products.filter(p => p.stockQuantity > 0 && p.stockQuantity < 50);
-  const outOfStockProducts = products.filter(p => p.stockQuantity === 0);
+  const activeProducts = products.filter((p) => p.status === 'active');
+  const lowStockProducts = products.filter((p) => p.stockQuantity > 0 && p.stockQuantity < 50);
+  const outOfStockProducts = products.filter((p) => p.stockQuantity === 0);
 
   const tabs = [
     {
@@ -225,10 +219,7 @@ export const ProductsPage: React.FC = () => {
             <h1 className="text-3xl font-serif font-semibold text-foreground">Products</h1>
             <p className="text-muted-foreground mt-1">Manage all products across your platform</p>
           </div>
-          <Button
-            onClick={() => navigate('/dashboard/products/create')}
-            className="flex items-center gap-2"
-          >
+          <Button onClick={() => navigate('/dashboard/products/create')} className="flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Add Product
           </Button>

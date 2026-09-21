@@ -155,9 +155,7 @@ export const CreateProductPage: React.FC = () => {
 
           // Set seller search display if seller exists
           if (product.seller) {
-            setSellerSearch(
-              `${product.seller.firstName} ${product.seller.lastName}`
-            );
+            setSellerSearch(`${product.seller.firstName} ${product.seller.lastName}`);
           }
         } catch (error) {
           console.error('Error fetching product:', error);
@@ -234,9 +232,10 @@ export const CreateProductPage: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const discountPercent = formData.compareAtPrice && formData.price < formData.compareAtPrice
-    ? Math.round(((formData.compareAtPrice - formData.price) / formData.compareAtPrice) * 100)
-    : 0;
+  const discountPercent =
+    formData.compareAtPrice && formData.price < formData.compareAtPrice
+      ? Math.round(((formData.compareAtPrice - formData.price) / formData.compareAtPrice) * 100)
+      : 0;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -265,7 +264,7 @@ export const CreateProductPage: React.FC = () => {
         metaTitle: formData.meta_title,
         metaDescription: formData.meta_description,
         seoKeywords: formData.meta_keywords
-          ? formData.meta_keywords.split(',').map(k => k.trim())
+          ? formData.meta_keywords.split(',').map((k) => k.trim())
           : undefined,
       };
 
@@ -280,7 +279,8 @@ export const CreateProductPage: React.FC = () => {
       navigate('/dashboard/products');
     } catch (error) {
       console.error('Error submitting form:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to save product. Please try again.';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to save product. Please try again.';
       setErrors({ submit: errorMessage });
       toast.error(errorMessage);
     } finally {
@@ -337,14 +337,10 @@ export const CreateProductPage: React.FC = () => {
                       placeholder="e.g., Samsung Galaxy A25"
                       disabled={isViewing}
                       className={`w-full px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                        errors.name
-                          ? 'border-destructive bg-destructive/5'
-                          : 'border-border bg-muted/30'
+                        errors.name ? 'border-destructive bg-destructive/5' : 'border-border bg-muted/30'
                       }`}
                     />
-                    {errors.name && (
-                      <p className="text-xs text-destructive mt-1">{errors.name}</p>
-                    )}
+                    {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
                   </div>
 
                   {/* SKU */}
@@ -361,9 +357,7 @@ export const CreateProductPage: React.FC = () => {
                         placeholder="e.g., SKU-000123"
                         disabled={isViewing}
                         className={`flex-1 px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                          errors.sku
-                            ? 'border-destructive bg-destructive/5'
-                            : 'border-border bg-muted/30'
+                          errors.sku ? 'border-destructive bg-destructive/5' : 'border-border bg-muted/30'
                         }`}
                       />
                       <button
@@ -378,9 +372,7 @@ export const CreateProductPage: React.FC = () => {
                         Generate
                       </button>
                     </div>
-                    {errors.sku && (
-                      <p className="text-xs text-destructive mt-1">{errors.sku}</p>
-                    )}
+                    {errors.sku && <p className="text-xs text-destructive mt-1">{errors.sku}</p>}
                     <p className="text-xs text-muted-foreground mt-1">
                       Stock keeping unit - unique identifier for the product
                     </p>
@@ -400,14 +392,10 @@ export const CreateProductPage: React.FC = () => {
                         placeholder="e.g., Samsung"
                         disabled={isViewing}
                         className={`w-full px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                          errors.brand
-                            ? 'border-destructive bg-destructive/5'
-                            : 'border-border bg-muted/30'
+                          errors.brand ? 'border-destructive bg-destructive/5' : 'border-border bg-muted/30'
                         }`}
                       />
-                      {errors.brand && (
-                        <p className="text-xs text-destructive mt-1">{errors.brand}</p>
-                      )}
+                      {errors.brand && <p className="text-xs text-destructive mt-1">{errors.brand}</p>}
                     </div>
 
                     {/* Category */}
@@ -471,30 +459,28 @@ export const CreateProductPage: React.FC = () => {
                             </div>
                           ) : (
                             sellers.map((seller) => (
-                                <button
-                                  key={seller.id}
-                                  type="button"
-                                  onClick={() => {
-                                    setFormData((prev) => ({
-                                      ...prev,
-                                      seller_id: seller.id,
-                                    }));
-                                    setSellerSearch(
-                                      `${seller.firstName} ${seller.lastName}`
-                                    );
-                                    setShowSellerDropdown(false);
-                                  }}
-                                  className="w-full text-left px-4 py-2.5 hover:bg-muted transition-colors flex flex-col gap-0.5"
-                                >
-                                  <span className="text-sm font-medium text-foreground">
-                                    {seller.firstName} {seller.lastName}
-                                  </span>
-                                  <span className="text-xs text-muted-foreground">
-                                    {seller.email}
-                                    {seller.phone && ` • ${seller.phone}`}
-                                  </span>
-                                </button>
-                              ))
+                              <button
+                                key={seller.id}
+                                type="button"
+                                onClick={() => {
+                                  setFormData((prev) => ({
+                                    ...prev,
+                                    seller_id: seller.id,
+                                  }));
+                                  setSellerSearch(`${seller.firstName} ${seller.lastName}`);
+                                  setShowSellerDropdown(false);
+                                }}
+                                className="w-full text-left px-4 py-2.5 hover:bg-muted transition-colors flex flex-col gap-0.5"
+                              >
+                                <span className="text-sm font-medium text-foreground">
+                                  {seller.firstName} {seller.lastName}
+                                </span>
+                                <span className="text-xs text-muted-foreground">
+                                  {seller.email}
+                                  {seller.phone && ` • ${seller.phone}`}
+                                </span>
+                              </button>
+                            ))
                           )}
                         </div>
                       )}
@@ -533,10 +519,10 @@ export const CreateProductPage: React.FC = () => {
                       }`}
                     />
                     <div className="flex justify-between mt-1">
-                      {errors.description && (
-                        <p className="text-xs text-destructive">{errors.description}</p>
-                      )}
-                      <p className={`text-xs ${formData.description.length >= 10 ? 'text-success' : 'text-muted-foreground'}`}>
+                      {errors.description && <p className="text-xs text-destructive">{errors.description}</p>}
+                      <p
+                        className={`text-xs ${formData.description.length >= 10 ? 'text-success' : 'text-muted-foreground'}`}
+                      >
                         {formData.description.length} characters
                       </p>
                     </div>
@@ -544,11 +530,11 @@ export const CreateProductPage: React.FC = () => {
 
                   {/* Status */}
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Status
-                    </label>
+                    <label className="block text-sm font-medium text-foreground mb-2">Status</label>
                     <div className="flex gap-4">
-                      <label className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>
+                      <label
+                        className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                      >
                         <input
                           type="radio"
                           name="status"
@@ -560,7 +546,9 @@ export const CreateProductPage: React.FC = () => {
                         />
                         <span className="text-sm text-foreground">Active</span>
                       </label>
-                      <label className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>
+                      <label
+                        className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                      >
                         <input
                           type="radio"
                           name="status"
@@ -600,15 +588,11 @@ export const CreateProductPage: React.FC = () => {
                           min="0"
                           disabled={isViewing}
                           className={`w-full pl-8 pr-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                            errors.price
-                              ? 'border-destructive bg-destructive/5'
-                              : 'border-border bg-muted/30'
+                            errors.price ? 'border-destructive bg-destructive/5' : 'border-border bg-muted/30'
                           }`}
                         />
                       </div>
-                      {errors.price && (
-                        <p className="text-xs text-destructive mt-1">{errors.price}</p>
-                      )}
+                      {errors.price && <p className="text-xs text-destructive mt-1">{errors.price}</p>}
                     </div>
 
                     {/* Compare At Price */}
@@ -630,9 +614,7 @@ export const CreateProductPage: React.FC = () => {
                           className="w-full pl-8 pr-4 py-2 rounded-lg border border-border bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         />
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Original price before discount
-                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">Original price before discount</p>
                     </div>
                   </div>
 
@@ -671,7 +653,9 @@ export const CreateProductPage: React.FC = () => {
 
                   {/* Featured Checkbox */}
                   <div>
-                    <label className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>
+                    <label
+                      className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                    >
                       <input
                         type="checkbox"
                         name="isFeatured"
@@ -748,9 +732,7 @@ export const CreateProductPage: React.FC = () => {
                       disabled={isViewing}
                       className="w-full px-4 py-2 rounded-lg border border-border bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Separate keywords with commas
-                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">Separate keywords with commas</p>
                   </div>
                 </div>
               </div>
@@ -796,9 +778,7 @@ export const CreateProductPage: React.FC = () => {
                   {!isViewing && (
                     <div className="border-2 border-dashed border-border rounded-lg p-4 text-center hover:bg-muted/30 transition-colors">
                       <Upload className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
-                      <p className="text-xs text-muted-foreground mb-2">
-                        Upload images or drag and drop
-                      </p>
+                      <p className="text-xs text-muted-foreground mb-2">Upload images or drag and drop</p>
                       <input
                         type="file"
                         accept="image/*"
@@ -832,9 +812,7 @@ export const CreateProductPage: React.FC = () => {
                   {/* Add Image URL */}
                   {!isViewing && (
                     <div className="space-y-2">
-                      <label className="block text-xs font-medium text-foreground">
-                        Or paste image URL
-                      </label>
+                      <label className="block text-xs font-medium text-foreground">Or paste image URL</label>
                       <div className="flex gap-2">
                         <input
                           type="url"
@@ -908,9 +886,7 @@ export const CreateProductPage: React.FC = () => {
                   {!isViewing && (
                     <div className="border-2 border-dashed border-border rounded-lg p-4 text-center hover:bg-muted/30 transition-colors">
                       <Upload className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
-                      <p className="text-xs text-muted-foreground mb-2">
-                        Upload videos or drag and drop
-                      </p>
+                      <p className="text-xs text-muted-foreground mb-2">Upload videos or drag and drop</p>
                       <input
                         type="file"
                         accept="video/*"
@@ -944,9 +920,7 @@ export const CreateProductPage: React.FC = () => {
                   {/* Add Video URL */}
                   {!isViewing && (
                     <div className="space-y-2">
-                      <label className="block text-xs font-medium text-foreground">
-                        Or paste video URL
-                      </label>
+                      <label className="block text-xs font-medium text-foreground">Or paste video URL</label>
                       <div className="flex gap-2">
                         <input
                           type="url"

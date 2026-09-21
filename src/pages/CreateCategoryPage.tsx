@@ -184,7 +184,8 @@ export const CreateCategoryPage: React.FC = () => {
       navigate('/dashboard/categories');
     } catch (error) {
       console.error('Error submitting form:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to save category. Please try again.';
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to save category. Please try again.';
       setErrors({ submit: errorMessage });
       toast.error(errorMessage);
     } finally {
@@ -241,14 +242,10 @@ export const CreateCategoryPage: React.FC = () => {
                       placeholder="e.g., Electronics"
                       disabled={isViewing}
                       className={`w-full px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                        errors.name
-                          ? 'border-destructive bg-destructive/5'
-                          : 'border-border bg-muted/30'
+                        errors.name ? 'border-destructive bg-destructive/5' : 'border-border bg-muted/30'
                       }`}
                     />
-                    {errors.name && (
-                      <p className="text-xs text-destructive mt-1">{errors.name}</p>
-                    )}
+                    {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
                   </div>
 
                   {/* Slug */}
@@ -265,9 +262,7 @@ export const CreateCategoryPage: React.FC = () => {
                         placeholder="e.g., electronics"
                         disabled={isViewing}
                         className={`flex-1 px-4 py-2 rounded-lg border transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50 disabled:cursor-not-allowed ${
-                          errors.slug
-                            ? 'border-destructive bg-destructive/5'
-                            : 'border-border bg-muted/30'
+                          errors.slug ? 'border-destructive bg-destructive/5' : 'border-border bg-muted/30'
                         }`}
                       />
                       <button
@@ -282,9 +277,7 @@ export const CreateCategoryPage: React.FC = () => {
                         Auto-generate
                       </button>
                     </div>
-                    {errors.slug && (
-                      <p className="text-xs text-destructive mt-1">{errors.slug}</p>
-                    )}
+                    {errors.slug && <p className="text-xs text-destructive mt-1">{errors.slug}</p>}
                     <p className="text-xs text-muted-foreground mt-1">
                       URL-friendly identifier for the category
                     </p>
@@ -309,10 +302,10 @@ export const CreateCategoryPage: React.FC = () => {
                       }`}
                     />
                     <div className="flex justify-between mt-1">
-                      {errors.description && (
-                        <p className="text-xs text-destructive">{errors.description}</p>
-                      )}
-                      <p className={`text-xs ${formData.description.length >= 10 ? 'text-success' : 'text-muted-foreground'}`}>
+                      {errors.description && <p className="text-xs text-destructive">{errors.description}</p>}
+                      <p
+                        className={`text-xs ${formData.description.length >= 10 ? 'text-success' : 'text-muted-foreground'}`}
+                      >
                         {formData.description.length} characters
                       </p>
                     </div>
@@ -346,11 +339,11 @@ export const CreateCategoryPage: React.FC = () => {
 
                   {/* Status */}
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Status
-                    </label>
+                    <label className="block text-sm font-medium text-foreground mb-2">Status</label>
                     <div className="flex gap-4">
-                      <label className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>
+                      <label
+                        className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                      >
                         <input
                           type="radio"
                           name="status"
@@ -362,7 +355,9 @@ export const CreateCategoryPage: React.FC = () => {
                         />
                         <span className="text-sm text-foreground">Active</span>
                       </label>
-                      <label className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>
+                      <label
+                        className={`flex items-center gap-2 ${isViewing ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                      >
                         <input
                           type="radio"
                           name="status"
@@ -438,9 +433,7 @@ export const CreateCategoryPage: React.FC = () => {
                       disabled={isViewing}
                       className="w-full px-4 py-2 rounded-lg border border-border bg-muted/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Separate keywords with commas
-                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">Separate keywords with commas</p>
                   </div>
                 </div>
               </div>
@@ -496,9 +489,7 @@ export const CreateCategoryPage: React.FC = () => {
                     </div>
                   ) : null}
 
-                  <p className="text-xs text-muted-foreground">
-                    Recommended: 500x500px PNG or JPG. Max 5MB.
-                  </p>
+                  <p className="text-xs text-muted-foreground">Recommended: 500x500px PNG or JPG. Max 5MB.</p>
                 </div>
               </div>
 

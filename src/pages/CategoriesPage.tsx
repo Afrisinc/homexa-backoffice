@@ -42,7 +42,7 @@ export const CategoriesPage: React.FC = () => {
 
       toast.success('Category deleted successfully!');
       // Refresh categories list
-      setCategories(categories.filter(cat => cat.id !== categoryId));
+      setCategories(categories.filter((cat) => cat.id !== categoryId));
     } catch (error) {
       console.error('Error deleting category:', error);
       toast.error('Failed to delete category');
@@ -85,9 +85,7 @@ export const CategoriesPage: React.FC = () => {
       render: (row: any) => (
         <span
           className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-            row.status === 'active'
-              ? 'bg-success/20 text-success'
-              : 'bg-muted text-muted-foreground'
+            row.status === 'active' ? 'bg-success/20 text-success' : 'bg-muted text-muted-foreground'
           }`}
         >
           {row.status.charAt(0).toUpperCase() + row.status.slice(1)}
@@ -97,9 +95,7 @@ export const CategoriesPage: React.FC = () => {
     {
       id: 'createdAt',
       header: 'Created',
-      render: (row: any) => (
-        <span className="text-muted-foreground text-sm">{row.createdAt}</span>
-      ),
+      render: (row: any) => <span className="text-muted-foreground text-sm">{row.createdAt}</span>,
     },
     {
       id: 'actions',

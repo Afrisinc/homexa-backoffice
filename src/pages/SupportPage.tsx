@@ -24,7 +24,7 @@ const mockChats = [
     buyer: 'Jane Smith',
     seller: 'Electronics Hub',
     status: 'active',
-    lastMessage: 'What\'s the warranty period?',
+    lastMessage: "What's the warranty period?",
     lastMessageTime: '2024-01-15 12:15',
     unreadCount: 0,
   },
@@ -112,17 +112,13 @@ export const SupportPage: React.FC = () => {
       id: 'buyer',
       header: 'Buyer',
       searchable: true,
-      render: (row: any) => (
-        <span className="text-sm text-foreground">{row.buyer}</span>
-      ),
+      render: (row: any) => <span className="text-sm text-foreground">{row.buyer}</span>,
     },
     {
       id: 'seller',
       header: 'Seller',
       searchable: true,
-      render: (row: any) => (
-        <span className="text-sm text-muted-foreground">{row.seller}</span>
-      ),
+      render: (row: any) => <span className="text-sm text-muted-foreground">{row.seller}</span>,
     },
     {
       id: 'lastMessage',
@@ -130,12 +126,8 @@ export const SupportPage: React.FC = () => {
       searchable: true,
       render: (row: any) => (
         <div className="flex items-center gap-2">
-          {row.unreadCount > 0 && (
-            <span className="inline-block h-2 w-2 rounded-full bg-primary" />
-          )}
-          <span className="text-sm text-muted-foreground line-clamp-1">
-            {row.lastMessage}
-          </span>
+          {row.unreadCount > 0 && <span className="inline-block h-2 w-2 rounded-full bg-primary" />}
+          <span className="text-sm text-muted-foreground line-clamp-1">{row.lastMessage}</span>
         </div>
       ),
     },
@@ -143,7 +135,9 @@ export const SupportPage: React.FC = () => {
       id: 'status',
       header: 'Status',
       render: (row: any) => (
-        <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${getStatusColor(row.status)}`}>
+        <span
+          className={`inline-block px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 ${getStatusColor(row.status)}`}
+        >
           {getStatusIcon(row.status)}
           {row.status.charAt(0).toUpperCase() + row.status.slice(1)}
         </span>
@@ -152,16 +146,14 @@ export const SupportPage: React.FC = () => {
     {
       id: 'lastMessageTime',
       header: 'Last Activity',
-      render: (row: any) => (
-        <span className="text-muted-foreground text-sm">{row.lastMessageTime}</span>
-      ),
+      render: (row: any) => <span className="text-muted-foreground text-sm">{row.lastMessageTime}</span>,
     },
   ];
 
   const allChats = mockChats;
-  const activeChats = mockChats.filter(c => c.status === 'active');
-  const resolvedChats = mockChats.filter(c => c.status === 'resolved');
-  const escalatedChats = mockChats.filter(c => c.status === 'escalated');
+  const activeChats = mockChats.filter((c) => c.status === 'active');
+  const resolvedChats = mockChats.filter((c) => c.status === 'resolved');
+  const escalatedChats = mockChats.filter((c) => c.status === 'escalated');
 
   const tabs = [
     {

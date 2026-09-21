@@ -7,10 +7,11 @@ const MOCK_ID = 1;
 const MOCK_TITLE = 'Post Title';
 
 // Simple kebab case utility function
-const kebabCase = (str) => str
-  .replace(/([a-z])([A-Z])/g, '$1-$2')
-  .replace(/[\s_]+/g, '-')
-  .toLowerCase();
+const kebabCase = (str) =>
+  str
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
+    .toLowerCase();
 
 const ROOTS = {
   AUTH: '/auth',

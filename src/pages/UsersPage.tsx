@@ -63,9 +63,12 @@ export const UsersPage: React.FC = () => {
     fetchUsers(1, '');
   }, [fetchUsers]);
 
-  const handlePageChange = React.useCallback((page: number) => {
-    fetchUsers(page, searchTerm);
-  }, [fetchUsers, searchTerm]);
+  const handlePageChange = React.useCallback(
+    (page: number) => {
+      fetchUsers(page, searchTerm);
+    },
+    [fetchUsers, searchTerm]
+  );
 
   const userColumns = [
     {
@@ -83,23 +86,17 @@ export const UsersPage: React.FC = () => {
       id: 'companyName',
       header: 'Company',
       searchable: true,
-      render: (row: User) => (
-        <span className="text-foreground">{row.companyName || '—'}</span>
-      ),
+      render: (row: User) => <span className="text-foreground">{row.companyName || '—'}</span>,
     },
     {
       id: 'phone',
       header: 'Phone',
-      render: (row: User) => (
-        <span className="text-muted-foreground text-sm">{row.phone}</span>
-      ),
+      render: (row: User) => <span className="text-muted-foreground text-sm">{row.phone}</span>,
     },
     {
       id: 'tin',
       header: 'TIN',
-      render: (row: User) => (
-        <span className="text-muted-foreground text-sm">{row.tin || '—'}</span>
-      ),
+      render: (row: User) => <span className="text-muted-foreground text-sm">{row.tin || '—'}</span>,
     },
     {
       id: 'lastLogin',
@@ -114,18 +111,14 @@ export const UsersPage: React.FC = () => {
       id: 'createdAt',
       header: 'Joined',
       render: (row: User) => (
-        <span className="text-muted-foreground text-sm">
-          {new Date(row.createdAt).toLocaleDateString()}
-        </span>
+        <span className="text-muted-foreground text-sm">{new Date(row.createdAt).toLocaleDateString()}</span>
       ),
     },
     {
       id: 'updatedAt',
       header: 'Updated',
       render: (row: User) => (
-        <span className="text-muted-foreground text-sm">
-          {new Date(row.updatedAt).toLocaleDateString()}
-        </span>
+        <span className="text-muted-foreground text-sm">{new Date(row.updatedAt).toLocaleDateString()}</span>
       ),
     },
     {
@@ -147,10 +140,7 @@ export const UsersPage: React.FC = () => {
           >
             <Edit className="h-4 w-4 text-muted-foreground hover:text-foreground" />
           </button>
-          <button
-            className="p-2 hover:bg-destructive/10 rounded-md transition-colors"
-            title="Delete"
-          >
+          <button className="p-2 hover:bg-destructive/10 rounded-md transition-colors" title="Delete">
             <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive" />
           </button>
         </div>
@@ -167,10 +157,7 @@ export const UsersPage: React.FC = () => {
             <h1 className="text-3xl font-serif font-semibold text-foreground">User Management</h1>
             <p className="text-muted-foreground mt-1">Manage sellers, buyers, and platform users</p>
           </div>
-          <Button
-            className="flex items-center gap-2"
-            onClick={() => navigate('/dashboard/users/create')}
-          >
+          <Button className="flex items-center gap-2" onClick={() => navigate('/dashboard/users/create')}>
             <Plus className="h-4 w-4" />
             Add User
           </Button>
@@ -216,7 +203,8 @@ export const UsersPage: React.FC = () => {
               {paginationData && (
                 <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
                   <p className="text-sm text-muted-foreground">
-                    Page {paginationData.page} of {paginationData.totalPages} ({paginationData.totalItems} total users)
+                    Page {paginationData.page} of {paginationData.totalPages} ({paginationData.totalItems}{' '}
+                    total users)
                   </p>
                   <div className="flex gap-2">
                     <button

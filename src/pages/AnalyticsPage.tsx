@@ -218,9 +218,7 @@ const MetricCard = ({ metric }: { metric: (typeof mockMetrics)[0] }) => (
   <div className={`rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow`}>
     <div className="flex items-center justify-between">
       <div className="flex-1">
-        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-          {metric.title}
-        </p>
+        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">{metric.title}</p>
         <p className="text-2xl font-bold text-foreground mt-3">{metric.value}</p>
         <div className="flex items-center gap-1 mt-2">
           {metric.trend === 'up' ? (
@@ -274,23 +272,17 @@ export const AnalyticsPage: React.FC = () => {
     {
       id: 'uptime',
       header: 'Uptime',
-      render: (row: any) => (
-        <span className="font-semibold text-foreground">{row.uptime}</span>
-      ),
+      render: (row: any) => <span className="font-semibold text-foreground">{row.uptime}</span>,
     },
     {
       id: 'responseTime',
       header: 'Response Time',
-      render: (row: any) => (
-        <span className="text-sm text-muted-foreground">{row.responseTime}</span>
-      ),
+      render: (row: any) => <span className="text-sm text-muted-foreground">{row.responseTime}</span>,
     },
     {
       id: 'requestCount',
       header: 'Request Count',
-      render: (row: any) => (
-        <span className="font-medium text-foreground">{row.requestCount}</span>
-      ),
+      render: (row: any) => <span className="font-medium text-foreground">{row.requestCount}</span>,
     },
   ];
 
@@ -299,9 +291,7 @@ export const AnalyticsPage: React.FC = () => {
       id: 'name',
       header: 'Seller',
       searchable: true,
-      render: (row: any) => (
-        <span className="font-medium text-foreground">{row.name}</span>
-      ),
+      render: (row: any) => <span className="font-medium text-foreground">{row.name}</span>,
     },
     {
       id: 'rating',
@@ -316,23 +306,17 @@ export const AnalyticsPage: React.FC = () => {
     {
       id: 'products',
       header: 'Products',
-      render: (row: any) => (
-        <span className="text-sm text-muted-foreground">{row.products}</span>
-      ),
+      render: (row: any) => <span className="text-sm text-muted-foreground">{row.products}</span>,
     },
     {
       id: 'orders',
       header: 'Orders',
-      render: (row: any) => (
-        <span className="font-medium text-foreground">{row.orders}</span>
-      ),
+      render: (row: any) => <span className="font-medium text-foreground">{row.orders}</span>,
     },
     {
       id: 'totalSales',
       header: 'Total Sales',
-      render: (row: any) => (
-        <span className="font-semibold text-success">{row.totalSales}</span>
-      ),
+      render: (row: any) => <span className="font-semibold text-success">{row.totalSales}</span>,
     },
   ];
 
@@ -416,10 +400,11 @@ export const AnalyticsPage: React.FC = () => {
               <h3 className="text-lg font-semibold text-foreground mb-4">Recent Activity</h3>
               <div className="space-y-3">
                 {mockRecentActivity.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-3 pb-3 border-b border-border/50 last:border-0">
-                    <div className="flex-shrink-0 mt-1 text-muted-foreground">
-                      {activity.icon}
-                    </div>
+                  <div
+                    key={activity.id}
+                    className="flex items-start gap-3 pb-3 border-b border-border/50 last:border-0"
+                  >
+                    <div className="flex-shrink-0 mt-1 text-muted-foreground">{activity.icon}</div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-foreground">{activity.description}</p>
                       <p className="text-xs text-muted-foreground mt-1">{activity.timestamp}</p>

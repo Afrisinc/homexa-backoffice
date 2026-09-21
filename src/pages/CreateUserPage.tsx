@@ -70,9 +70,7 @@ export const CreateUserPage: React.FC = () => {
     }
   }, [isEditing, isViewing, id]);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -124,9 +122,7 @@ export const CreateUserPage: React.FC = () => {
     setLoading(true);
     try {
       // For editing, don't send password if empty
-      const submitData = isEditing && !formData.password
-        ? { ...formData, password: undefined }
-        : formData;
+      const submitData = isEditing && !formData.password ? { ...formData, password: undefined } : formData;
 
       if (isEditing && id) {
         await usersAPI.update(id, submitData);
@@ -184,181 +180,181 @@ export const CreateUserPage: React.FC = () => {
 
         {/* Form */}
         {!isLoadingUser && (
-        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-6">
-              {/* Basic Information */}
-              <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                <h2 className="text-lg font-semibold text-foreground mb-4">Basic Information</h2>
+          <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
+            <div className="grid gap-6 lg:grid-cols-3">
+              {/* Main Content */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Basic Information */}
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                  <h2 className="text-lg font-semibold text-foreground mb-4">Basic Information</h2>
 
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        label="First Name"
+                        name="firstName"
+                        type="text"
+                        placeholder="Enter first name"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        error={errors.firstName}
+                        disabled={isViewing}
+                      />
+
+                      <Input
+                        label="Last Name"
+                        name="lastName"
+                        type="text"
+                        placeholder="Enter last name"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        error={errors.lastName}
+                        disabled={isViewing}
+                      />
+                    </div>
+
                     <Input
-                      label="First Name"
-                      name="firstName"
-                      type="text"
-                      placeholder="Enter first name"
-                      value={formData.firstName}
+                      label="Email"
+                      name="email"
+                      type="email"
+                      placeholder="Enter email address"
+                      value={formData.email}
                       onChange={handleInputChange}
-                      error={errors.firstName}
+                      error={errors.email}
                       disabled={isViewing}
                     />
 
                     <Input
-                      label="Last Name"
-                      name="lastName"
-                      type="text"
-                      placeholder="Enter last name"
-                      value={formData.lastName}
+                      label={isEditing ? 'Password (Leave empty to keep current)' : 'Password'}
+                      name="password"
+                      type="password"
+                      placeholder={isEditing ? 'Leave empty to keep current password' : 'Enter password'}
+                      value={formData.password}
                       onChange={handleInputChange}
-                      error={errors.lastName}
+                      error={errors.password}
                       disabled={isViewing}
                     />
-                  </div>
 
-                  <Input
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter email address"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    error={errors.email}
-                    disabled={isViewing}
-                  />
-
-                  <Input
-                    label={isEditing ? 'Password (Leave empty to keep current)' : 'Password'}
-                    name="password"
-                    type="password"
-                    placeholder={isEditing ? 'Leave empty to keep current password' : 'Enter password'}
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    error={errors.password}
-                    disabled={isViewing}
-                  />
-
-                  <Input
-                    label="Phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="Enter phone number"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    error={errors.phone}
-                    disabled={isViewing}
-                  />
-
-                  <Input
-                    label="TIN"
-                    name="tin"
-                    type="text"
-                    placeholder="Enter TIN"
-                    value={formData.tin}
-                    onChange={handleInputChange}
-                    error={errors.tin}
-                    disabled={isViewing}
-                  />
-
-                  <Input
-                    label="Company Name"
-                    name="companyName"
-                    type="text"
-                    placeholder="Enter company name"
-                    value={formData.companyName}
-                    onChange={handleInputChange}
-                    error={errors.companyName}
-                    disabled={isViewing}
-                  />
-
-                  <div className="space-y-2">
-                    <label htmlFor="role" className="block text-sm font-medium text-foreground">
-                      Role <span className="text-destructive">*</span>
-                    </label>
-                    <select
-                      id="role"
-                      name="role"
-                      value={formData.role}
+                    <Input
+                      label="Phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="Enter phone number"
+                      value={formData.phone}
                       onChange={handleInputChange}
+                      error={errors.phone}
                       disabled={isViewing}
-                      className={`w-full h-11 px-4 py-2 rounded-lg border bg-card shadow-sm transition-all duration-200
+                    />
+
+                    <Input
+                      label="TIN"
+                      name="tin"
+                      type="text"
+                      placeholder="Enter TIN"
+                      value={formData.tin}
+                      onChange={handleInputChange}
+                      error={errors.tin}
+                      disabled={isViewing}
+                    />
+
+                    <Input
+                      label="Company Name"
+                      name="companyName"
+                      type="text"
+                      placeholder="Enter company name"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      error={errors.companyName}
+                      disabled={isViewing}
+                    />
+
+                    <div className="space-y-2">
+                      <label htmlFor="role" className="block text-sm font-medium text-foreground">
+                        Role <span className="text-destructive">*</span>
+                      </label>
+                      <select
+                        id="role"
+                        name="role"
+                        value={formData.role}
+                        onChange={handleInputChange}
+                        disabled={isViewing}
+                        className={`w-full h-11 px-4 py-2 rounded-lg border bg-card shadow-sm transition-all duration-200
                         placeholder:text-muted-foreground
                         focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background focus:border-primary
                         disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted
                         ${errors.role ? 'border-destructive focus:ring-destructive' : 'border-input hover:border-primary/50'}
                       `}
-                    >
-                      {ROLE_OPTIONS.map((option) => (
-                        <option key={option} value={option}>
-                          {option.charAt(0).toUpperCase() + option.slice(1)}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.role && <p className="text-sm text-destructive">{errors.role}</p>}
+                      >
+                        {ROLE_OPTIONS.map((option) => (
+                          <option key={option} value={option}>
+                            {option.charAt(0).toUpperCase() + option.slice(1)}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.role && <p className="text-sm text-destructive">{errors.role}</p>}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Submit Actions */}
-              {!isViewing && (
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                  <div className="space-y-3">
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full px-4 py-2.5 bg-primary hover:bg-primary/90 disabled:bg-muted disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
-                    >
-                      <Save className="h-4 w-4" />
-                      {loading ? 'Saving...' : isEditing ? 'Update User' : 'Create User'}
-                    </button>
+              {/* Sidebar */}
+              <div className="space-y-6">
+                {/* Submit Actions */}
+                {!isViewing && (
+                  <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <div className="space-y-3">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full px-4 py-2.5 bg-primary hover:bg-primary/90 disabled:bg-muted disabled:cursor-not-allowed text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Save className="h-4 w-4" />
+                        {loading ? 'Saving...' : isEditing ? 'Update User' : 'Create User'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => navigate('/dashboard/users')}
+                        className="w-full px-4 py-2.5 bg-muted hover:bg-muted/80 text-foreground rounded-lg font-medium transition-colors"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* View Mode - Back Button */}
+                {isViewing && (
+                  <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
                     <button
                       type="button"
                       onClick={() => navigate('/dashboard/users')}
-                      className="w-full px-4 py-2.5 bg-muted hover:bg-muted/80 text-foreground rounded-lg font-medium transition-colors"
+                      className="w-full px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-colors"
                     >
-                      Cancel
+                      Back to Users
                     </button>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* View Mode - Back Button */}
-              {isViewing && (
-                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-                  <button
-                    type="button"
-                    onClick={() => navigate('/dashboard/users')}
-                    className="w-full px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-colors"
-                  >
-                    Back to Users
-                  </button>
+                {/* Help */}
+                <div className="rounded-xl border border-border/50 bg-muted/30 p-4">
+                  <h3 className="text-sm font-semibold text-foreground mb-2">Tips</h3>
+                  <ul className="space-y-2 text-xs text-muted-foreground">
+                    <li>• Use a valid email address</li>
+                    <li>• Password must be at least 6 characters</li>
+                    <li>• Fill in all required fields</li>
+                    <li>• Role determines user permissions</li>
+                  </ul>
                 </div>
-              )}
-
-              {/* Help */}
-              <div className="rounded-xl border border-border/50 bg-muted/30 p-4">
-                <h3 className="text-sm font-semibold text-foreground mb-2">Tips</h3>
-                <ul className="space-y-2 text-xs text-muted-foreground">
-                  <li>• Use a valid email address</li>
-                  <li>• Password must be at least 6 characters</li>
-                  <li>• Fill in all required fields</li>
-                  <li>• Role determines user permissions</li>
-                </ul>
               </div>
             </div>
-          </div>
 
-          {/* Error Message */}
-          {errors.submit && (
-            <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-4">
-              <p className="text-sm text-destructive">{errors.submit}</p>
-            </div>
-          )}
-        </form>
+            {/* Error Message */}
+            {errors.submit && (
+              <div className="rounded-lg bg-destructive/10 border border-destructive/20 p-4">
+                <p className="text-sm text-destructive">{errors.submit}</p>
+              </div>
+            )}
+          </form>
         )}
       </div>
     </DashboardLayout>
